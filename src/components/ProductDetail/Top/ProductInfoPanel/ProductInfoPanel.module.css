@@ -1,0 +1,321 @@
+.wrap {
+  width: 100%;
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-size: 26px;
+  font-weight: 800;
+  color: #222;
+  margin: 0 0 10px;
+}
+
+.ratingLine {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.reviewLink {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #666;
+  text-decoration: underline;
+}
+
+.desc {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.rtBox {
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 18px;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+}
+
+.rtHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.rtText {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+}
+
+.rtBadge {
+  width: 26px;
+  height: 26px;
+  background: #2f6fff;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-weight: 800;
+}
+
+.stockNote {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.progress {
+  width: 100%;
+  height: 6px;
+  background: #e8eaff;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.progressBar {
+  display: block;
+  height: 100%;
+  background: #555;
+}
+
+.timerRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) 1.5fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.timeBox {
+  border: 1px solid #eee;
+  background: #fafafa;
+  padding: 10px 10px 8px;
+  text-align: center;
+}
+
+.timeNum {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 800;
+  color: #555;
+}
+
+.timeLbl {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: #777;
+}
+
+.timeWarn {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: #777;
+  text-align: right;
+  padding-right: 6px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 10px 0 12px;
+}
+
+.asLow {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.price {
+  font-family: var(--font-ui);
+  font-size: 26px;
+  font-weight: 900;
+  color: #111;
+}
+
+.stock {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #333;
+  text-align: right;
+  margin-bottom: 6px;
+}
+
+.sku {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 800;
+  color: #333;
+  text-align: right;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 14px 0;
+}
+
+.optionBlock {
+  margin-bottom: 14px;
+}
+
+.optTitle {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: 0.4px;
+  margin-bottom: 10px;
+}
+
+.sizes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sizeBtn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #eee;
+  background: #f6f6f6;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: #666;
+}
+
+.sizeActive {
+  background: #fff;
+  border-color: #2f6fff;
+  color: #2f6fff;
+}
+
+.colors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.colorDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #eee;
+  cursor: pointer;
+}
+
+.colorActive {
+  box-shadow:
+    0 0 0 1px #2f6fff,
+    0 0 0 3px rgba(47, 111, 255, 0.15);
+}
+
+.actionRow {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 120px 1fr 44px 44px;
+  gap: 12px;
+  align-items: center;
+}
+
+.qty {
+  height: 44px;
+  border: 1px solid #eee;
+  background: #fff;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+}
+
+.qtyBtn {
+  height: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  color: #666;
+}
+
+.qtyNum {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+}
+
+.addBtn {
+  height: 44px;
+  border: 0;
+  background: #2f6fff;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.iconBtn {
+  height: 44px;
+  border: 1px solid #eee;
+  background: #fff;
+  cursor: pointer;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socialRow {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.socialBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #f0f0f0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  text-decoration: none;
+}
+
+.socialIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor; /* giữ đúng dạng fill */
+}
+
+.plus {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+}

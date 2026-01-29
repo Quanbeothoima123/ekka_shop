@@ -1,0 +1,107 @@
+.page {
+  width: 100%;
+  background: #fff;
+}
+
+.section {
+  width: 100%;
+  padding: 0 0 70px;
+  margin-top: 100px;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 350px minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+/* ✅ Không còn scroll chung cho Category + Best seller */
+.left {
+  position: sticky;
+  top: 30px;
+  align-self: start;
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
+}
+
+.card {
+  border: 1px solid #eee;
+  background: #fff;
+}
+
+.bestWrap {
+  margin-top: 30px;
+}
+
+.right {
+  min-width: 0;
+}
+
+.topRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 460px;
+  gap: 30px;
+  align-items: start;
+}
+
+.galleryCol {
+  min-width: 0;
+}
+
+.infoCol {
+  min-width: 0;
+}
+
+.tabsWrap {
+  margin-top: 30px;
+}
+
+/* ✅ related là section full-width */
+.relatedSection {
+  margin-top: 60px;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 24px;
+  }
+  .topRow {
+    grid-template-columns: minmax(0, 1fr) 420px;
+    gap: 24px;
+  }
+  .bestWrap {
+    margin-top: 24px;
+  }
+  .tabsWrap {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .left {
+    position: static;
+  }
+  .topRow {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .section {
+    margin-top: 80px;
+  }
+}

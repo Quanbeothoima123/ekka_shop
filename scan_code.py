@@ -1,7 +1,7 @@
 import os
 
 # Cấu hình
-FOLDER_TO_SCAN = 'src/components/Shop'  # Thư mục muốn quét
+FOLDER_TO_SCAN = 'src/components/ProductDetail'  # Thư mục muốn quét
 OUTPUT_FILE = 'code_full_manual.txt'
 # Các đuôi file muốn lấy (để trống [] nếu muốn lấy tất cả)
 EXTENSIONS = ['.js', '.html', '.css', '.py', '.json'] 
