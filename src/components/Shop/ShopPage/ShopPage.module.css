@@ -1,0 +1,189 @@
+.page {
+  width: 100%;
+  background: #fff;
+}
+
+.section {
+  width: 100%;
+  padding: 0 0 60px;
+  margin-top: 100px;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* grid 2 cột: 350px + phần còn lại */
+.grid {
+  display: grid;
+  grid-template-columns: 350px minmax(0, 1fr);
+  grid-template-areas:
+    "leftTop rightTop"
+    "leftMain rightMain";
+  gap: 30px 30px; /* ✅ gap đều 30px cho cả hàng dọc và ngang */
+  align-items: start;
+}
+
+/* ✅ BỎ padding riêng lẻ, để gap tự động xử lý */
+.leftTop,
+.rightTop,
+.leftMain,
+.rightMain {
+  padding: 0;
+}
+
+/* assign areas */
+.leftTop {
+  grid-area: leftTop;
+}
+.rightTop {
+  grid-area: rightTop;
+}
+.leftMain {
+  grid-area: leftMain;
+}
+.rightMain {
+  grid-area: rightMain;
+}
+
+/* ===== TOP LEFT BAR: Filter Products By ===== */
+.filterHead {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  border: 1px solid #eee;
+  background: #f8f8f8;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 700;
+  color: #555;
+  box-sizing: border-box;
+}
+
+/* RIGHT TOP toolbar */
+.rightTop {
+  display: flex;
+  align-items: stretch;
+}
+
+/* ===== STICKY SIDEBAR ===== */
+.leftMain {
+  position: sticky;
+  top: 30px; /* ✅ Cùng khoảng cách với gap */
+  align-self: start;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+/* Custom scrollbar cho sidebar */
+.leftMain::-webkit-scrollbar {
+  width: 6px;
+}
+
+.leftMain::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.leftMain::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.leftMain::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+  margin-top: 0; /* ✅ BỎ margin-top, để gap grid xử lý */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px; /* ✅ Gap đều 30px */
+}
+
+/* list mode */
+.listMode {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* ✅ Gap đều 30px */
+}
+
+.bottomBar {
+  margin-top: 30px; /* ✅ Cùng khoảng cách với gap */
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.showing {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 320px minmax(0, 1fr);
+    gap: 24px; /* ✅ Gap nhỏ hơn cho màn hình nhỏ */
+  }
+  .products {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .listMode {
+    gap: 24px;
+  }
+  .bottomBar {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "rightTop"
+      "leftTop"
+      "leftMain"
+      "rightMain";
+    gap: 20px; /* ✅ Gap nhỏ hơn cho mobile */
+  }
+
+  /* Tắt sticky trên mobile */
+  .leftMain {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .listMode {
+    gap: 20px;
+  }
+
+  .bottomBar {
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .products {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .listMode {
+    gap: 16px;
+  }
+}

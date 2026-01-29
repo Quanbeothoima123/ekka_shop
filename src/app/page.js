@@ -1,4 +1,3 @@
-import Header from "@/components/Header/Header";
 import HeroSlider from "@/components/Home/HeroSlider/HeroSlider";
 import TopCollection from "@/components/Home/TopCollection/TopCollection";
 import CollectionBanners from "@/components/Home/CollectionBanners/CollectionBanners";
@@ -11,26 +10,22 @@ import NewArrivalsSection from "@/components/NewArrivals/NewArrivalsSection";
 import ClientReview from "@/components/ClientReview/ClientReview";
 import BrandLogos from "@/components/BrandLogos/BrandLogos";
 import InstagramFeed from "@/components/Home/InstagramFeed/InstagramFeed";
-import Footer from "@/components/Footer/Footer";
+
 export default function HomePage() {
   return (
     <>
-      <Header />
-      <main>
-        <HeroSlider />
-        <TopCollection />
-        <CollectionBanners />
-        <TopCategories />
-        <FeaturedDeals />
-        <TopVendors />
-        <ServiceHighlights />
-        <PromoBillboard />
-        <NewArrivalsSection />
-        <ClientReview />
-        <BrandLogos />
-        <InstagramFeed />
-        <Footer />
-      </main>
+      <HeroSlider />
+      <TopCollection />
+      <CollectionBanners />
+      <TopCategories />
+      <FeaturedDeals />
+      <TopVendors />
+      <ServiceHighlights />
+      <PromoBillboard />
+      <NewArrivalsSection />
+      <ClientReview />
+      <BrandLogos />
+      <InstagramFeed />
     </>
   );
 }

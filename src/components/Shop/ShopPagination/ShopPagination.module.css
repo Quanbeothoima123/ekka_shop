@@ -1,0 +1,42 @@
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pageBtn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #eee;
+  background: #fff;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #666;
+}
+
+.active {
+  background: #2f6fff;
+  border-color: #2f6fff;
+  color: #fff;
+}
+
+.nextBtn {
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #eee;
+  background: #fff;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #666;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pageBtn:disabled,
+.nextBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

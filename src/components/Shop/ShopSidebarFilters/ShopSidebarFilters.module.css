@@ -1,0 +1,246 @@
+.sidebar {
+  width: 100%;
+  border: 1px solid #eee;
+  background: #fff;
+  padding: 18px 18px 20px;
+  box-sizing: border-box;
+}
+
+.block {
+  margin-bottom: 14px;
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+.checkRow input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fakeBox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ddd;
+  background: #fff;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0; /* ✅ Ngăn checkbox bị co lại */
+}
+
+.checkRow input:checked + .fakeBox {
+  border-color: #2f6fff;
+  background: #2f6fff;
+}
+
+.checkRow input:checked + .fakeBox::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(40deg);
+}
+
+.checkLabel {
+  line-height: 1;
+}
+
+.moreBtn {
+  margin-top: 12px;
+  border: 0;
+  background: transparent;
+  color: #777;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.moreBtn:hover {
+  color: #2f6fff;
+}
+
+.plus {
+  width: 16px;
+  height: 16px;
+  background: #2f6fff;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 200ms ease;
+}
+
+.moreBtn:hover .plus {
+  background: #1a52cc;
+}
+
+.plus::before,
+.plus::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+}
+.plus::before {
+  width: 8px;
+  height: 2px;
+  left: 4px;
+  top: 7px;
+}
+.plus::after {
+  width: 2px;
+  height: 8px;
+  left: 7px;
+  top: 4px;
+}
+
+.divider {
+  border-top: 1px solid #eee;
+  margin: 16px 0;
+}
+
+/* colors */
+.colors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.colorDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #eee;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.colorDot:hover {
+  transform: scale(1.1);
+}
+
+.colorActive {
+  box-shadow: 0 0 0 2px #2f6fff;
+  transform: scale(1.1);
+}
+
+/* price */
+.priceBox {
+  border: 1px solid #eee;
+  background: #fafafa;
+  padding: 18px 12px 16px;
+}
+
+.rangeWrap {
+  position: relative;
+  height: 18px;
+  margin-bottom: 14px;
+}
+
+.range {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  appearance: none;
+  height: 3px;
+  background: #ddd;
+  outline: none;
+  pointer-events: none; /* ✅ Cho phép cả 2 slider chồng lên nhau */
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid #2f6fff;
+  cursor: pointer;
+  pointer-events: all; /* ✅ Chỉ thumb mới có thể tương tác */
+}
+
+.range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid #2f6fff;
+  cursor: pointer;
+}
+
+.range:first-child {
+  z-index: 1;
+}
+
+.range:last-child {
+  z-index: 2;
+}
+
+.priceInputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.money {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #eee;
+  background: #fff;
+  height: 34px;
+}
+
+.dollar {
+  padding: 0 8px;
+  color: #999;
+  font-family: var(--font-ui);
+}
+
+.moneyInput {
+  width: 54px;
+  border: 0;
+  outline: none;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #666;
+  padding-right: 8px;
+}
+
+.to {
+  color: #999;
+  font-family: var(--font-ui);
+}

@@ -5,7 +5,7 @@
 }
 
 .container {
-  width: min(1400px, 100%); /* ✅ theo bạn */
+  width: min(1400px, 100%);
   margin: 0 auto;
   padding: 0 18px;
 }
@@ -47,6 +47,11 @@
   color: #333;
   padding: 8px 0;
   position: relative;
+  transition: color 200ms ease;
+}
+
+.tab:hover {
+  color: #2f6fff;
 }
 
 .activeTab {
@@ -63,15 +68,17 @@
   background: #2f6fff;
 }
 
-/* Grid giống template: 4 cột, card tự handle padding/margin */
+/* ✅ Grid với gap để tạo khoảng cách giữa các cards */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 30px; /* ✅ Khoảng cách giữa các product cards */
 }
 
 @media (max-width: 1200px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
+    gap: 24px; /* ✅ Gap nhỏ hơn cho màn hình nhỏ */
   }
 }
 
@@ -82,11 +89,13 @@
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* ✅ Gap nhỏ hơn cho tablet */
   }
 }
 
 @media (max-width: 520px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 16px; /* ✅ Gap nhỏ hơn cho mobile */
   }
 }
