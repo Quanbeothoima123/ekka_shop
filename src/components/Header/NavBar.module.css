@@ -1,0 +1,90 @@
+.navBar {
+  height: 100px;
+  display: grid;
+  grid-template-columns: 70px 1fr 70px;
+  align-items: center;
+  padding: 0 18px;
+  background: #fff;
+}
+
+/* ✅ tăng hitbox */
+.leftIconBtn,
+.rightIconBtn {
+  width: 52px;
+  height: 52px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+/* ✅ tăng icon menu/filter */
+.navIcon {
+  width: 28px;
+  height: 28px;
+  color: currentColor;
+}
+
+.navList {
+  display: flex;
+  gap: 34px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navLink {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: #333;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.active {
+  color: #2f6fff;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #2f6fff;
+}
+
+.hot {
+  color: #2f6fff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .navList {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .navBar {
+    height: auto;
+    padding: 12px 14px;
+    row-gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .navList {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    padding: 6px 0;
+  }
+}

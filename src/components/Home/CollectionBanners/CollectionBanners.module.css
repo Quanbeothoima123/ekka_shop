@@ -1,0 +1,59 @@
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 18px 0 10px;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* ✅ “Shop All Collection” nằm phía trên, canh giữa */
+.topLinkWrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.topLink {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.topLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #333;
+  opacity: 0.85;
+}
+
+/* ✅ 2 banner cùng 1 hàng */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+/* ✅ mỗi khối có padding trái phải 15 */
+.col {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

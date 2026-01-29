@@ -1,0 +1,55 @@
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 55px 0 40px;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 36px;
+  font-weight: 700;
+  color: #444;
+}
+
+.subTitle {
+  margin: 6px 0 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+.link {
+  color: #2f6fff;
+  text-decoration: underline;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px; /* nhìn giống layout gốc */
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

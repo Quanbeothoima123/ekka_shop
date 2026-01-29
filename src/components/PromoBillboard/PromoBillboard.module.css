@@ -1,0 +1,115 @@
+.section {
+  width: 100%;
+  background: #fff;
+}
+
+/* full background, không fix width/height cứng */
+.billboard {
+  width: 100%;
+  min-height: clamp(420px, 42vw, 560px);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* canh nội dung giống ảnh: nằm nửa phải */
+.inner {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+  min-height: inherit;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.content {
+  width: min(620px, 100%);
+  text-align: center;
+  padding: 30px 10px;
+}
+
+/* SUNGLASSES */
+.kicker {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #2f6fff;
+  font-size: clamp(34px, 4.2vw, 64px);
+  line-height: 1.05;
+}
+
+/* SUPER OFFER */
+.subKicker {
+  margin: 6px 0 14px;
+  font-family: var(--font-ui);
+  letter-spacing: 3px;
+  color: #2f6fff;
+  font-size: clamp(18px, 2.2vw, 38px);
+  line-height: 1.1;
+}
+
+.product {
+  display: flex;
+  justify-content: center;
+  margin: 14px 0 10px;
+}
+
+.productImg {
+  width: min(520px, 85%);
+  height: auto;
+  display: block;
+  user-select: none;
+}
+
+/* tên sp */
+.title {
+  margin: 10px 0 10px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  color: #444;
+  font-size: clamp(20px, 2.3vw, 36px);
+}
+
+/* $40.00 only */
+.price {
+  margin: 0 0 16px;
+  font-family: var(--font-ui);
+  color: #444;
+  font-weight: 600;
+  font-size: clamp(22px, 2.8vw, 44px);
+}
+
+.money {
+  font-weight: 800;
+}
+
+/* nút xanh */
+.cta {
+  height: 46px;
+  padding: 0 44px;
+  background: #2f6fff;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.cta:hover {
+  filter: brightness(0.95);
+}
+
+/* Responsive: màn nhỏ thì content xuống dưới/giữa hơn */
+@media (max-width: 900px) {
+  .inner {
+    justify-content: center;
+  }
+  .content {
+    width: min(680px, 100%);
+  }
+}

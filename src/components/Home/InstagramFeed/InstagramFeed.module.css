@@ -1,0 +1,124 @@
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 55px 0 40px;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 36px;
+  font-weight: 700;
+  color: #444;
+}
+
+.subTitle {
+  margin: 6px 0 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+/* ===== marquee ===== */
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* track chạy phải -> trái */
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: ig-marquee 28s linear infinite;
+}
+
+/* ✅ Hover vào bất kỳ item => pause cả track */
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/* mỗi item có padding L/R 15px như bạn f12 */
+.item {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 0 15px;
+  display: block;
+  text-decoration: none;
+}
+
+/* kích thước đúng như ảnh */
+.img {
+  width: 250px;
+  height: 192.44px;
+  display: block;
+  object-fit: cover;
+  background: #f3f3f3;
+}
+
+/* overlay kiểu ảnh bạn chụp: màu xanh + icon giữa */
+.overlay {
+  position: absolute;
+  inset: 0;
+  margin: 0 15px; /* khớp padding của item => overlay phủ đúng ảnh */
+  display: grid;
+  place-items: center;
+
+  background: rgba(52, 116, 212, 0.72); /* gần #3474D4 như bạn chụp */
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+/* hover vào ảnh thì overlay hiện */
+.item:hover .overlay {
+  opacity: 1;
+}
+
+.igIcon {
+  color: #fff;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.12));
+}
+
+/* animation: dịch 50% track (vì lặp 2 lần items) */
+@keyframes ig-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* responsive: nếu màn nhỏ, vẫn giữ đúng style nhưng cho phép cuộn nhẹ */
+@media (max-width: 900px) {
+  .track {
+    animation-duration: 34s;
+  }
+  .img {
+    width: 220px;
+    height: 192.44px;
+  }
+}
+
+@media (max-width: 520px) {
+  .img {
+    width: 200px;
+    height: 170px;
+  }
+  .overlay {
+    margin: 0 15px;
+  }
+}

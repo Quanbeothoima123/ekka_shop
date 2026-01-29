@@ -1,0 +1,92 @@
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 62px 0 40px;
+}
+
+.container {
+  width: min(1400px, 100%); /* ✅ theo bạn */
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 34px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.subTitle {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+  margin: 0 0 16px 0;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 34px;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  padding: 8px 0;
+  position: relative;
+}
+
+.activeTab {
+  color: #2f6fff;
+}
+
+.activeTab::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #2f6fff;
+}
+
+/* Grid giống template: 4 cột, card tự handle padding/margin */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .tabs {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

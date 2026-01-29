@@ -1,0 +1,126 @@
+.mainBar {
+  height: 100px;
+  display: grid;
+  grid-template-columns: 240px 1fr 240px;
+  align-items: center;
+  padding: 0 18px;
+  gap: 18px;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: auto;
+  width: auto;
+  max-width: 200px;
+}
+
+.search {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  border: 1px solid #2f6fff;
+  border-radius: 2px;
+  overflow: hidden;
+  height: 44px;
+  background: #fff;
+}
+
+.searchInput {
+  flex: 1;
+  border: 0;
+  outline: none;
+  padding: 0 14px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+
+.searchBtn {
+  width: 54px;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ tăng icon search */
+.searchIcon {
+  width: 22px;
+  height: 22px;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  align-items: center;
+}
+
+/* ✅ tăng hitbox + nhìn “to” hơn */
+.iconBtn {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+}
+
+/* ✅ tăng icon user/heart/bag */
+.actionIcon {
+  width: 28px;
+  height: 28px;
+  color: currentColor;
+}
+
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: #666;
+  color: #fff;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  line-height: 1;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .mainBar {
+    height: auto;
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+
+  .logoWrap {
+    justify-content: center;
+  }
+
+  .search {
+    max-width: 100%;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+}

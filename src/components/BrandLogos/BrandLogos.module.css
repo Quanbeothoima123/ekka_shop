@@ -1,0 +1,65 @@
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 20px 0; /* giống kiểu khối mỏng như ảnh */
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* 1 hàng logo, co giãn trên màn nhỏ */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; /* xuống hàng khi thiếu chỗ */
+}
+
+/* giống bootstrap: mỗi item có padding L/R 15px */
+.col {
+  padding: 0 15px;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+/* box logo như bạn F12: 196 x 81.09 */
+.card {
+  width: 100%;
+  height: 81.09px;
+  background: #fff;
+  border: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* img ~165.97 x 81.09, canh giữa */
+.logo {
+  width: 165.97px;
+  height: 81.09px;
+  object-fit: contain;
+  display: block;
+  margin: 0.015625px; /* đúng kiểu F12 bạn chụp (rất nhỏ) */
+}
+
+/* responsive: vẫn giữ kích thước card/ảnh,
+   nhưng nếu màn quá nhỏ thì căn đều cho đẹp */
+@media (max-width: 1200px) {
+  .row {
+    justify-content: center;
+    column-gap: 0; /* vì đã có padding 15px ở .col */
+  }
+}
+
+@media (max-width: 520px) {
+  .card {
+    width: 180px;
+  }
+  .logo {
+    width: 150px;
+  }
+}

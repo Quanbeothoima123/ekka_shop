@@ -1,0 +1,314 @@
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 40px 0 40px;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.panel {
+  width: 100%;
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.panelTitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 34px;
+  font-weight: 700;
+  color: #444;
+  letter-spacing: 0.2px;
+}
+
+.navBtns {
+  display: inline-flex;
+  gap: 10px;
+}
+
+.navBtn {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+  color: #888;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.navBtn:hover {
+  color: #444;
+}
+
+.navBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.panelLine {
+  height: 1px;
+  background: #eee;
+  margin-top: 10px;
+}
+
+/* ===== SLIDER ===== */
+.sliderViewport {
+  margin-top: 22px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sliderTrack {
+  display: flex;
+  width: 300%;
+  transform: translateX(-100%);
+  will-change: transform;
+}
+
+.transitioning {
+  transition: transform 650ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slideItem {
+  width: 33.333333%;
+  flex: 0 0 33.333333%;
+}
+
+/* ===== CARD ===== */
+.card {
+  border: 1px solid #eee;
+  background: #f7f7f7;
+}
+
+.cardInner {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 30px;
+  padding: 30px;
+  align-items: center;
+}
+
+.imageCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 10px;
+}
+
+.productImg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.contentCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.productTitle {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 22px;
+  font-weight: 500;
+  color: #777;
+}
+
+.reviewRow {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 16px;
+  color: #ddd;
+}
+
+.starFilled {
+  color: #ff6a7a;
+}
+
+.reviewText {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+.priceRow {
+  margin-top: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.oldPrice {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.price {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+}
+
+.timerRow {
+  margin-top: 18px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.timeBox {
+  width: 54px;
+}
+
+.timeValue {
+  height: 46px;
+  border: 1px solid #eee;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+}
+
+.timeLabel {
+  margin-top: 8px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: #777;
+  text-align: center;
+}
+
+.desc {
+  margin: 18px 0 0;
+  white-space: pre-line;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #888;
+  line-height: 1.7;
+}
+
+.bookingRow {
+  margin-top: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.bookingLabel {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 700;
+  color: #666;
+}
+
+.bookingValue {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 700;
+  color: #2f6fff;
+}
+
+.btnRow {
+  margin-top: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.btnGhost {
+  height: 42px;
+  padding: 0 22px;
+  border: 0;
+  background: #444;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btnPrimary {
+  height: 42px;
+  padding: 0 22px;
+  border: 0;
+  background: #2f6fff;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btnGhost:hover,
+.btnPrimary:hover {
+  filter: brightness(0.96);
+}
+
+/* responsive */
+@media (max-width: 1100px) {
+  .grid2 {
+    grid-template-columns: 1fr;
+  }
+
+  .panelTitle {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cardInner {
+    grid-template-columns: 1fr;
+  }
+
+  .imageCol {
+    padding-right: 0;
+  }
+
+  .timerRow {
+    flex-wrap: wrap;
+  }
+
+  .btnRow {
+    flex-direction: column;
+  }
+
+  .btnGhost,
+  .btnPrimary {
+    width: 100%;
+  }
+}

@@ -1,0 +1,134 @@
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 15px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.logoWrap {
+  width: 70px;
+  height: 70px;
+  background: #f7f7f7;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  display: block;
+}
+
+.meta {
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 600;
+  color: #444;
+  line-height: 1.2;
+}
+
+.products {
+  margin-top: 4px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+/* ✅ Row mới để rating và sales nằm cùng hàng với space-between */
+.ratingRow {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 2px;
+  line-height: 1;
+}
+
+.star {
+  font-size: 14px;
+  color: #cfcfcf;
+}
+
+.starOn {
+  color: #ff6a6a;
+}
+
+.sales {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: #999;
+  white-space: nowrap;
+}
+
+.salesLabel {
+  color: #b0b0b0;
+}
+
+.salesValue {
+  color: #999;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+  margin: 12px 0 15px;
+}
+
+/* grid 2x2 */
+.thumbGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* ✅ cell chuẩn + không cho tràn */
+.thumbCell {
+  background: #f7f7f7;
+  border: 1px solid #eee;
+  height: 153px; /* khóa chiều cao giống layout */
+  padding: 10px; /* tạo khoảng trắng như mẫu */
+  display: grid;
+  place-items: center;
+  overflow: hidden; /* ✅ chặn chờm ra ngoài */
+}
+
+/* ✅ wrapper để scale ảnh mà vẫn không tràn */
+.thumbMedia {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden; /* double-safe */
+}
+
+/* ✅ ảnh không tràn + hover scale */
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block; /* tránh baseline gap */
+  transform: scale(1);
+  transition: transform 260ms ease;
+  will-change: transform;
+}
+
+.thumbCell:hover .thumbImg {
+  transform: scale(1.08); /* ✅ hover scale up */
+}

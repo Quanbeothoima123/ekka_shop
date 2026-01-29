@@ -1,0 +1,170 @@
+.section {
+  width: 100%;
+  background: #fff;
+  padding: 55px 0 40px;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 36px;
+  font-weight: 700;
+  color: #444;
+}
+
+.subTitle {
+  margin: 6px 0 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 350px minmax(0, 1fr);
+  gap: 5px;
+  align-items: start;
+}
+
+.left {
+  padding: 0 15px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.right {
+  padding: 0 15px;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+}
+
+/* ✅ layer background */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: inherit; /* lấy từ style backgroundImage */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 220ms ease;
+}
+
+/* Trick: set backgroundImage ở .hero, rồi ::before dùng inherit */
+
+/* overlay: ban đầu là 915x315 ở giữa */
+.overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 915px;
+  height: 315px;
+
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.55);
+
+  /* ✅ mượt */
+  transition:
+    width 420ms ease,
+    height 420ms ease,
+    left 420ms ease,
+    top 420ms ease,
+    transform 420ms ease,
+    opacity 220ms ease;
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ✅ hover -> overlay expand ra full background */
+.hero:hover .overlay {
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transform: none; /* bỏ translate */
+  opacity: 1;
+}
+
+/* nút View All hiện cùng lúc với overlay (không bị "nhảy sau") */
+.viewAllBtn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 42px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #2f6fff;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+
+  /* ✅ cùng thời điểm với overlay */
+  opacity: 0;
+  transition: opacity 220ms ease;
+  transition-delay: 0ms;
+
+  z-index: 2;
+}
+
+.hero:hover .viewAllBtn {
+  opacity: 1;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+  .overlay {
+    width: min(915px, 88%);
+    height: min(315px, 78%);
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .left,
+  .right {
+    padding: 0;
+  }
+  .overlay {
+    width: min(915px, 92%);
+    height: min(315px, 70%);
+  }
+}

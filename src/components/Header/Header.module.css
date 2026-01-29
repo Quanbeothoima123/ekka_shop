@@ -1,0 +1,10 @@
+.header {
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+}
+
+.container {
+  width: min(1400px, 100%);
+  margin: 0 auto;
+}

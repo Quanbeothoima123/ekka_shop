@@ -1,0 +1,151 @@
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  /* ✅ tăng chiều cao card để thấy overlay nở theo chiều dọc */
+  height: 336px;
+
+  overflow: hidden;
+  text-decoration: none;
+  background: #f6f6f6;
+}
+
+/* background full */
+.bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+
+/*
+  ✅ Overlay expand:
+  - Ban đầu: 600x300
+  - Hover: phủ full card (336px cao hơn 300px => thấy nở dọc)
+*/
+.card::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 600px;
+  height: 300px;
+
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+
+  background: rgba(0, 0, 0, 0.38);
+  opacity: 0;
+
+  transition:
+    width 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    height 560ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 260ms ease;
+}
+
+.card:hover::after {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+/* content chữ */
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 34px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.kicker {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 400;
+  color: #555;
+}
+
+.title {
+  font-family: var(--font-heading);
+  color: #444;
+  letter-spacing: 1px;
+}
+
+.titleLine {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.desc {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  color: #666;
+  line-height: 1.45;
+}
+
+/* ✅ nút ORDER: hiện cùng lúc overlay (KHÔNG delay) */
+.ctaCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+
+  transform: translate(-50%, -50%);
+  opacity: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 140px;
+
+  background: #2f6fff;
+  color: #fff;
+
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  /* ✅ cùng lúc với overlay */
+  transition: opacity 260ms ease;
+}
+
+.card:hover .ctaCenter {
+  opacity: 1;
+}
+
+/* responsive:
+   - card nhỏ hơn
+   - overlay ban đầu vẫn 600x300 nhưng co lại theo vw */
+@media (max-width: 900px) {
+  .card {
+    height: 320px;
+  }
+}
+
+@media (max-width: 680px) {
+  .card::after {
+    width: min(600px, 92vw);
+    height: min(300px, 46vw);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    height: 280px;
+  }
+  .content {
+    padding: 24px 20px;
+  }
+  .titleLine {
+    font-size: 28px;
+  }
+}
