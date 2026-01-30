@@ -1,11 +1,10 @@
-import styles from "./NewArrivalsSection.module.css";
-import ProductCard from "@/components/Product/ProductCard";
+import ArrivalsSection from "@/components/ArrivalsSection/ArrivalsSection";
 
 const PRODUCTS = [
   {
     id: "na-1",
     name: "Full Sleeve Cap T-shirt",
-    img: "/assets/img/products/p1.jpg", // bạn thay ảnh đúng path của bạn
+    img: "/assets/img/products/p1.jpg",
     rating: 4,
     oldPrice: 20,
     price: 15,
@@ -22,7 +21,7 @@ const PRODUCTS = [
     price: 80,
     badgeRight: { text: "NEW", color: "blue" },
     colors: ["#caa9ff", "#ff7aa2", "#d6ff59", "#ffd463"],
-    sizes: [], // card của bạn đang render sizes; để [] để giống hình (không bắt buộc)
+    sizes: [],
   },
   {
     id: "na-3",
@@ -49,29 +48,14 @@ const PRODUCTS = [
 
 export default function NewArrivalsSection() {
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
-        <header className={styles.heading}>
-          <h2 className={styles.title}>New Arrivals</h2>
-          <p className={styles.subTitle}>
-            Browse The Collection of Top Products
-          </p>
-        </header>
-
-        <div className={styles.grid}>
-          {PRODUCTS.map((p) => (
-            <div key={p.id} className={styles.col}>
-              <ProductCard product={p} />
-            </div>
-          ))}
-        </div>
-
-        <div className={styles.footer}>
-          <a className={styles.shopAll} href="#">
-            Shop All Collection
-          </a>
-        </div>
-      </div>
-    </section>
+    <ArrivalsSection
+      title="New Arrivals"
+      subtitle="Browse The Collection of Top Products"
+      products={PRODUCTS}
+      footer={{ label: "Shop All Collection", href: "#" }}
+      gap={30}
+      paddingTop={60}
+      paddingBottom={55}
+    />
   );
 }

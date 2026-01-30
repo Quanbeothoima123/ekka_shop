@@ -133,3 +133,18 @@ export function IconFilter(props) {
     </svg>
   );
 }
+// ===== THÊM ICON TRASH Ở ĐÂY =====
+export function IconTrash(props) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path d="M4 7h16" {...outlineProps} />
+      <path d="M10 11v7" {...outlineProps} />
+      <path d="M14 11v7" {...outlineProps} />
+      <path d="M6.5 7l1 14h9l1-14" {...outlineProps} />
+      <path
+        d="M9 7V5.8c0-.9.7-1.6 1.6-1.6h2.8c.9 0 1.6.7 1.6 1.6V7"
+        {...outlineProps}
+      />
+    </svg>
+  );
+}

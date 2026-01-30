@@ -1,0 +1,264 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* overlay: đúng yêu cầu màu #808080 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  opacity: 0;
+  transition: opacity 280ms ease;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* panel */
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 350px;
+  max-width: calc(100vw - 30px);
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(110%);
+  transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  box-shadow: -10px 0 30px rgba(19, 16, 16, 0.12);
+}
+
+/* open state */
+.open {
+  pointer-events: auto;
+}
+
+.open .overlay {
+  opacity: 0.35;
+}
+
+.open .panel {
+  transform: translateX(0);
+}
+
+.head {
+  height: 64px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 800;
+  color: #222;
+}
+
+.closeBtn {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider {
+  height: 1px;
+  background: #eee;
+}
+
+/* scroll area list */
+.list {
+  flex: 1;
+  overflow: auto;
+  padding: 0 20px;
+}
+
+.list::-webkit-scrollbar {
+  width: 6px;
+}
+.list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.list::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+  border-radius: 4px;
+}
+
+.empty {
+  padding: 20px 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.thumb {
+  width: 70px;
+  height: 70px;
+  background: #f7f7f7;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.meta {
+  min-width: 0;
+}
+
+.rowTop {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.name {
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.removeBtn {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  background: transparent;
+  color: #ff2f2f;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priceLine {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-family: var(--font-ui);
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 800;
+  color: #555;
+}
+
+.mul {
+  font-size: 14px;
+  color: #777;
+}
+
+.qtyText {
+  font-size: 14px;
+  color: #777;
+}
+
+/* qty box giống ảnh: - | 1 | + */
+.qtyBox {
+  width: 110px;
+  height: 34px;
+  border: 1px solid #e6e6e6;
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  align-items: center;
+  background: #fff;
+}
+
+.qtyBtn {
+  height: 100%;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 18px;
+  color: #777;
+}
+
+.qtyNum {
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: #666;
+}
+
+/* footer sticky */
+.footer {
+  padding: 0 20px 18px;
+  background: #fff;
+}
+
+.summary {
+  padding: 16px 0 10px;
+  display: grid;
+  gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: #777;
+}
+
+.sumRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.sumRow b {
+  font-weight: 800;
+  color: #111;
+}
+
+/* bottom buttons */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.btnPrimary,
+.btnSecondary {
+  height: 44px;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  color: #fff;
+}
+
+.btnPrimary {
+  background: #3474d4;
+}
+
+.btnSecondary {
+  background: #555555;
+}

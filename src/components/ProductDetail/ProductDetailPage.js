@@ -11,7 +11,7 @@ import ProductGallery from "./Top/ProductGallery/ProductGallery";
 import ProductInfoPanel from "./Top/ProductInfoPanel/ProductInfoPanel";
 import ProductTabs from "./Tabs/ProductTabs";
 
-import RelatedProducts from "./Related/RelatedProducts";
+import ArrivalsSection from "@/components/ArrivalsSection/ArrivalsSection";
 
 const PRODUCT = {
   id: "wh12",
@@ -227,7 +227,14 @@ export default function ProductDetailPage() {
 
           {/* RELATED PRODUCTS: section riêng full-width */}
           <div className={styles.relatedSection}>
-            <RelatedProducts products={RELATED} />
+            <ArrivalsSection
+              title="Related Products"
+              subtitle="Browse The Collection of Top Products"
+              products={RELATED}
+              gap={30}
+              paddingTop={0}
+              paddingBottom={0}
+            />
           </div>
         </div>
       </section>

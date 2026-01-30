@@ -54,57 +54,70 @@ function BestSellerItem({ item }) {
   );
 }
 
-function mod(n, m) {
-  return ((n % m) + m) % m;
-}
-
 function BestSellersCarousel({ pages, baseLen }) {
-  // 3 lần để tạo loop mượt
+  // Clone nhiều hơn (5 lần) để tạo buffer zone
   const loopPages = useMemo(() => {
     if (baseLen <= 1) return pages;
-    return [...pages, ...pages, ...pages];
+    return [...pages, ...pages, ...pages, ...pages, ...pages];
   }, [pages, baseLen]);
 
-  // start ở "giữa" để có thể next/prev vô hạn
-  const startPos = baseLen <= 1 ? 0 : baseLen;
+  // Bắt đầu ở vị trí giữa (lần thứ 3 trong 5 lần clone)
+  const startPos = baseLen <= 1 ? 0 : baseLen * 2;
 
-  const [pos, setPos] = useState(startPos);
-  const [animate, setAnimate] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(startPos);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const trackRef = useRef(null);
 
   const prev = () => {
-    if (baseLen <= 1) return;
-    setPos((p) => p - 1);
+    if (baseLen <= 1 || isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
   };
 
   const next = () => {
-    if (baseLen <= 1) return;
-    setPos((p) => p + 1);
+    if (baseLen <= 1 || isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
   };
 
-  const onTransitionEnd = () => {
+  const handleTransitionEnd = () => {
     if (baseLen <= 1) return;
 
-    // nếu chạy ra khỏi "đoạn giữa" thì nhảy về giữa (không animation)
-    if (pos < baseLen || pos >= baseLen * 2) {
-      const normalized = baseLen + mod(pos, baseLen);
-      setAnimate(false);
-      setPos(normalized);
-      requestAnimationFrame(() => setAnimate(true));
+    setIsTransitioning(false);
+
+    // Tính vị trí thực trong vòng lặp (0 -> baseLen-1)
+    const realIndex = ((currentIndex % baseLen) + baseLen) % baseLen;
+
+    // Nếu đang ở ngoài "vùng an toàn giữa", reset về giữa
+    // Vùng an toàn: từ baseLen đến baseLen*3
+    if (currentIndex < baseLen || currentIndex >= baseLen * 4) {
+      // Reset về vị trí tương ứng ở giữa (không có animation)
+      const newIndex = baseLen * 2 + realIndex;
+      setCurrentIndex(newIndex);
     }
   };
 
-  const translate = `translateX(-${pos * 100}%)`;
+  const translate = `translateX(-${currentIndex * 100}%)`;
 
   return (
     <>
       <div className={styles.head}>
         <div className={styles.title}>BEST SELLERS</div>
         <div className={styles.nav}>
-          <button type="button" className={styles.navBtn} onClick={prev}>
+          <button
+            type="button"
+            className={styles.navBtn}
+            onClick={prev}
+            disabled={baseLen <= 1}
+          >
             <IconChevronLeft />
           </button>
-          <button type="button" className={styles.navBtn} onClick={next}>
+          <button
+            type="button"
+            className={styles.navBtn}
+            onClick={next}
+            disabled={baseLen <= 1}
+          >
             <IconChevronRight />
           </button>
         </div>
@@ -116,9 +129,9 @@ function BestSellersCarousel({ pages, baseLen }) {
           className={styles.track}
           style={{
             transform: translate,
-            transition: animate ? "transform 320ms ease" : "none",
+            transition: isTransitioning ? "transform 320ms ease" : "none",
           }}
-          onTransitionEnd={onTransitionEnd}
+          onTransitionEnd={handleTransitionEnd}
         >
           {loopPages.map((group, idx) => (
             <div key={`bs-page-${idx}`} className={styles.slide}>
@@ -148,7 +161,6 @@ export default function BestSellers({ items = [] }) {
 
   const baseLen = pages.length;
 
-  // Dùng key để force reset component khi baseLen thay đổi
   return (
     <div className={styles.wrap}>
       <BestSellersCarousel key={baseLen} pages={pages} baseLen={baseLen} />

@@ -4,13 +4,11 @@
 
 .main {
   width: 100%;
-  border: 1px solid #eee;
-  background: #fff;
+  /* ✅ Bỏ border và padding */
+  background: transparent;
   overflow: hidden;
   display: grid;
   place-items: center;
-  padding: 20px;
-  box-sizing: border-box;
 }
 
 .mainImg {
@@ -46,6 +44,16 @@
   align-items: center;
   justify-content: center;
   color: #666;
+  transition: background 150ms;
+}
+
+.arrow:hover:not(:disabled) {
+  background: #f5f5f5;
+}
+
+.arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
 }
 
 .thumbsViewport {
@@ -63,18 +71,25 @@
 .thumbBtn {
   width: 94px;
   height: 84px;
-  border: 1px solid #eee;
-  background: #fff;
+  /* ✅ Bỏ border, bỏ padding */
+  background: transparent;
   cursor: pointer;
-  display: grid;
-  place-items: center;
-  padding: 6px;
-  box-sizing: border-box;
+  display: block;
   flex: 0 0 auto;
+  padding: 0;
+  border: none;
+  position: relative;
+  transition: opacity 150ms;
 }
 
+.thumbBtn:hover {
+  opacity: 0.8;
+}
+
+/* ✅ Highlight ảnh active bằng outline thay vì border */
 .active {
-  border-color: #2f6fff;
+  outline: 3px solid #2f6fff;
+  outline-offset: -3px;
 }
 
 .thumbImg {

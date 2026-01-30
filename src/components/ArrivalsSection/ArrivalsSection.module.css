@@ -1,7 +1,7 @@
 .section {
   width: 100%;
   background: #fff;
-  padding: 60px 0 55px;
+  padding: var(--pt, 60px) 0 var(--pb, 55px);
 }
 
 .container {
@@ -30,19 +30,11 @@
   color: #888;
 }
 
-/* grid 4 cột như template */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
+  gap: var(--gap, 30px);
   align-items: start;
-}
-
-/* mỗi col giữ đúng padding trái/phải 15px
-   (ProductCard của bạn cũng có padding L/R 15px rồi,
-    nhưng để giống layout template, mình wrap thêm 1 lớp col để ổn định) */
-.col {
-  padding: 0;
 }
 
 .footer {
@@ -51,7 +43,7 @@
   margin-top: 10px;
 }
 
-.shopAll {
+.footerLink {
   font-family: var(--font-ui);
   font-size: 14px;
   font-weight: 600;
@@ -61,7 +53,6 @@
   border-bottom: 1px solid #333;
 }
 
-/* responsive */
 @media (max-width: 1200px) {
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

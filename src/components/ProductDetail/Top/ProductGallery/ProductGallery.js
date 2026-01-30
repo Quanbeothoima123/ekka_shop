@@ -30,74 +30,90 @@ function IconChevronRight(props) {
   );
 }
 
-function mod(n, m) {
-  return ((n % m) + m) % m;
-}
-
 function GalleryCore({ all, len }) {
-  // main active image
-  const [active, setActive] = useState(0);
+  // Ảnh đang hiển thị ở main
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // thumbnails loop (show 4, move 1 slot each click)
+  // Thumbnail carousel setup
   const perView = 4;
-  const stepPx = 110; // (94px thumb + 16px gap) => giữ đúng layout cũ
+  const stepPx = 110; // 94px thumb width + 16px gap
 
-  // dùng 3x list để loop
+  // Clone 5 lần để tạo vòng lặp mượt
   const loopThumbs = useMemo(() => {
     if (len <= 1) return all;
-    return [...all, ...all, ...all];
+    return [...all, ...all, ...all, ...all, ...all];
   }, [all, len]);
 
-  const startPos = len <= 1 ? 0 : len; // middle
+  // Bắt đầu ở giữa (lần thứ 3 trong 5 lần clone)
+  const startPos = len <= 1 ? 0 : len * 2;
   const [thumbPos, setThumbPos] = useState(startPos);
-  const [animate, setAnimate] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const trackRef = useRef(null);
 
+  // ✅ Prev = đi từ PHẢI sang TRÁI (chiều thuận)
   const prev = () => {
-    if (len <= 1) return;
-    setActive((a) => mod(a - 1, len));
+    if (len <= 1 || isTransitioning) return;
+    setIsTransitioning(true);
+
+    // Lùi 1 ảnh trong mảng gốc
+    setActiveIndex((prev) => (prev - 1 + len) % len);
+    // Dịch sang trái
     setThumbPos((p) => p - 1);
   };
 
+  // ✅ Next = tiếp tục đi từ PHẢI sang TRÁI (vòng lặp)
   const next = () => {
-    if (len <= 1) return;
-    setActive((a) => mod(a + 1, len));
+    if (len <= 1 || isTransitioning) return;
+    setIsTransitioning(true);
+
+    // Tiến 1 ảnh trong mảng gốc
+    setActiveIndex((prev) => (prev + 1) % len);
+    // Dịch sang trái
     setThumbPos((p) => p + 1);
   };
 
-  const ensureVisible = (idx) => {
+  const handleTransitionEnd = () => {
     if (len <= 1) return;
 
-    const baseStart = mod(thumbPos, len);
+    setIsTransitioning(false);
 
-    // khoảng cách từ start hiện tại -> idx theo vòng tròn
-    const forward = mod(idx - baseStart, len);
+    // Tính vị trí thực trong vòng lặp
+    const realPos = ((thumbPos % len) + len) % len;
 
-    // nếu idx nằm ngoài 4 ô đang hiển thị, kéo start để idx vào ô cuối
-    if (forward >= perView) {
-      const shift = forward - (perView - 1);
-      setThumbPos((p) => p + shift);
+    // Nếu ra ngoài vùng an toàn (len -> len*4), reset về giữa
+    if (thumbPos < len || thumbPos >= len * 4) {
+      const newPos = len * 2 + realPos;
+      setThumbPos(newPos);
     }
   };
 
-  const select = (idx) => {
-    setActive(idx);
-    ensureVisible(idx);
-  };
+  // ✅ Khi click vào ảnh con → LUÔN ĐI THEO CHIỀU THUẬN (phải -> trái)
+  const selectImage = (clickedRealIndex) => {
+    if (isTransitioning) return;
 
-  const onTransitionEnd = () => {
-    if (len <= 1) return;
+    setIsTransitioning(true);
 
-    // nếu pos ra khỏi đoạn giữa => nhảy về giữa để loop vô hạn
-    if (thumbPos < len || thumbPos >= len * 2) {
-      const normalized = len + mod(thumbPos, len);
-      setAnimate(false);
-      setThumbPos(normalized);
-      requestAnimationFrame(() => setAnimate(true));
+    // Set ảnh này làm active
+    setActiveIndex(clickedRealIndex);
+
+    // Tính ảnh nào đang ở vị trí đầu tiên (bên trái nhất)
+    const currentFirstImageIndex = ((thumbPos % len) + len) % len;
+
+    // ✅ LUÔN ĐI THEO CHIỀU THUẬN (0->1->2->...->n->0)
+    // Tính khoảng cách đi thuận từ currentFirst đến clicked
+    let forwardSteps = (clickedRealIndex - currentFirstImageIndex + len) % len;
+
+    // Nếu click vào chính ảnh đầu tiên (forwardSteps = 0)
+    // → Đi vòng cả vòng (len steps) để quay lại
+    if (forwardSteps === 0 && clickedRealIndex === currentFirstImageIndex) {
+      forwardSteps = len;
     }
+
+    // Dịch chuyển theo chiều thuận
+    setThumbPos((p) => p + forwardSteps);
   };
 
-  // zoom origin by cursor
+  // Zoom origin by cursor
   const [hover, setHover] = useState(false);
   const [origin, setOrigin] = useState({ x: 50, y: 50 });
 
@@ -125,7 +141,7 @@ function GalleryCore({ all, len }) {
         onMouseLeave={() => setHover(false)}
         onMouseMove={onMove}
       >
-        <img className={styles.mainImg} src={all[active]} alt="" />
+        <img className={styles.mainImg} src={all[activeIndex]} alt="" />
       </div>
 
       <div className={styles.thumbsRow}>
@@ -133,6 +149,7 @@ function GalleryCore({ all, len }) {
           type="button"
           className={styles.arrow}
           onClick={prev}
+          disabled={len <= 1}
           aria-label="Previous"
         >
           <IconChevronLeft />
@@ -144,21 +161,21 @@ function GalleryCore({ all, len }) {
             className={styles.thumbsTrack}
             style={{
               transform: translateX,
-              transition: animate ? "transform 280ms ease" : "none",
+              transition: isTransitioning ? "transform 280ms ease" : "none",
             }}
-            onTransitionEnd={onTransitionEnd}
+            onTransitionEnd={handleTransitionEnd}
           >
             {loopThumbs.map((src, i) => {
-              // map vị trí i -> index thực trong [0..len-1]
-              const realIdx = len ? mod(i, len) : 0;
-              const isActive = realIdx === active;
+              // Map vị trí i trong loop -> index thực trong [0..len-1]
+              const realIdx = len ? ((i % len) + len) % len : 0;
+              const isActive = realIdx === activeIndex;
 
               return (
                 <button
-                  key={`${src}-${i}`}
+                  key={`thumb-${i}`}
                   type="button"
                   className={`${styles.thumbBtn} ${isActive ? styles.active : ""}`}
-                  onClick={() => select(realIdx)}
+                  onClick={() => selectImage(realIdx)}
                 >
                   <img className={styles.thumbImg} src={src} alt="" />
                 </button>
@@ -171,6 +188,7 @@ function GalleryCore({ all, len }) {
           type="button"
           className={styles.arrow}
           onClick={next}
+          disabled={len <= 1}
           aria-label="Next"
         >
           <IconChevronRight />
@@ -184,8 +202,6 @@ export default function ProductGallery({ images = [] }) {
   const all = useMemo(() => images.filter(Boolean), [images]);
   const len = all.length;
 
-  // Dùng key để reset component khi images thay đổi
-  // Tạo stable key từ images
   const galleryKey = useMemo(() => all.join(","), [all]);
 
   return (

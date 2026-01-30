@@ -1,15 +1,16 @@
+import Link from "next/link";
 import styles from "./NavBar.module.css";
 import { IconGrid, IconFilter } from "../icons/Icons";
 
 const links = [
-  { label: "HOME", active: true },
-  { label: "CATEGORIES" },
-  { label: "PRODUCTS" },
-  { label: "PAGES" },
-  { label: "OTHERS" },
-  { label: "BLOG" },
-  { label: "ELEMENTS" },
-  { label: "HOT OFFERS", hot: true },
+  { label: "HOME", href: "/", active: true },
+  { label: "CATEGORIES", href: "/categories" },
+  { label: "PRODUCTS", href: "/products" },
+  { label: "PAGES", href: "/pages" },
+  { label: "OTHERS", href: "/others" },
+  { label: "BLOG", href: "/blog" },
+  { label: "ELEMENTS", href: "/elements" },
+  { label: "HOT OFFERS", href: "/hot-offers", hot: true },
 ];
 
 export default function NavBar() {
@@ -26,16 +27,17 @@ export default function NavBar() {
       <ul className={styles.navList}>
         {links.map((l) => (
           <li key={l.label} className={styles.navItem}>
-            <a
-              href="#"
+            <Link
+              href={l.href}
               className={[
                 styles.navLink,
                 l.active ? styles.active : "",
                 l.hot ? styles.hot : "",
               ].join(" ")}
+              aria-current={l.active ? "page" : undefined}
             >
               {l.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
