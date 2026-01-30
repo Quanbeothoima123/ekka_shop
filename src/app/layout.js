@@ -32,10 +32,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi">
-      <body
-        className={`${montserrat.variable} ${poppins.variable} ${fjalla.variable}`}
-      >
+    <html
+      lang="vi"
+      className={`${montserrat.variable} ${poppins.variable} ${fjalla.variable}`}
+    >
+      <body>
         <Header />
         <main>{children}</main>
         <Footer />

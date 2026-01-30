@@ -1,3 +1,5 @@
+"use client";
+import { useState, useRef, useEffect } from "react";
 import styles from "./TopBar.module.css";
 import {
   IconFacebook,
@@ -7,6 +9,32 @@ import {
 } from "../icons/Icons";
 
 export default function TopBar() {
+  const [currencyOpen, setCurrencyOpen] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState("USD $");
+  const [selectedLanguage, setSelectedLanguage] = useState("ENGLISH");
+
+  const currencyRef = useRef(null);
+  const languageRef = useRef(null);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (currencyRef.current && !currencyRef.current.contains(event.target)) {
+        setCurrencyOpen(false);
+      }
+      if (languageRef.current && !languageRef.current.contains(event.target)) {
+        setLanguageOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const currencies = ["USD $", "EUR €"];
+  const languages = ["ENGLISH", "ITALIANO"];
+
   return (
     <div className={styles.topBar}>
       <div className={styles.left}>
@@ -29,12 +57,71 @@ export default function TopBar() {
       </div>
 
       <div className={styles.right}>
-        <button className={styles.dropdownBtn} type="button">
-          CURRENCY <span className={styles.caret} />
-        </button>
-        <button className={styles.dropdownBtn} type="button">
-          LANGUAGE <span className={styles.caret} />
-        </button>
+        {/* Currency Dropdown */}
+        <div className={styles.dropdown} ref={currencyRef}>
+          <button
+            className={styles.dropdownBtn}
+            type="button"
+            onClick={() => {
+              setCurrencyOpen(!currencyOpen);
+              setLanguageOpen(false);
+            }}
+          >
+            CURRENCY{" "}
+            <span
+              className={`${styles.caret} ${currencyOpen ? styles.caretUp : ""}`}
+            />
+          </button>
+          <div
+            className={`${styles.dropdownMenu} ${currencyOpen ? styles.open : ""}`}
+          >
+            {currencies.map((currency) => (
+              <button
+                key={currency}
+                className={`${styles.dropdownItem} ${selectedCurrency === currency ? styles.active : ""}`}
+                onClick={() => {
+                  setSelectedCurrency(currency);
+                  setCurrencyOpen(false);
+                }}
+              >
+                {currency}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Language Dropdown */}
+        <div className={styles.dropdown} ref={languageRef}>
+          <button
+            className={styles.dropdownBtn}
+            type="button"
+            onClick={() => {
+              setLanguageOpen(!languageOpen);
+              setCurrencyOpen(false);
+            }}
+          >
+            LANGUAGE{" "}
+            <span
+              className={`${styles.caret} ${languageOpen ? styles.caretUp : ""}`}
+            />
+          </button>
+          <div
+            className={`${styles.dropdownMenu} ${languageOpen ? styles.open : ""}`}
+          >
+            {languages.map((language) => (
+              <button
+                key={language}
+                className={`${styles.dropdownItem} ${selectedLanguage === language ? styles.active : ""}`}
+                onClick={() => {
+                  setSelectedLanguage(language);
+                  setLanguageOpen(false);
+                }}
+              >
+                {language}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

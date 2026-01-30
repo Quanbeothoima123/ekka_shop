@@ -5,6 +5,8 @@
   align-items: center;
   padding: 0 18px;
   background: #fff;
+  position: relative;
+  z-index: 20;
 }
 
 /* ✅ tăng hitbox */
@@ -19,6 +21,12 @@
   align-items: center;
   justify-content: center;
   color: #333;
+}
+
+/* ✅ hover giống template: nền nhẹ + viền */
+.rightIconBtn:hover {
+  background: #f7f7f7;
+  border-radius: 8px;
 }
 
 /* ✅ tăng icon menu/filter */
@@ -66,6 +74,72 @@
   color: #2f6fff;
 }
 
+/* ===== Filter dropdown ===== */
+.filterWrap {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 240px;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.dropdownOpen {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdownTitle {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.dropdownList {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.dropdownItem {
+  padding: 0;
+  margin: 0;
+}
+
+.dropdownBtn {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: #777;
+  padding: 10px 16px;
+}
+
+.dropdownBtn:hover {
+  background: #f7f7f7;
+  color: #333;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .navList {
@@ -86,5 +160,10 @@
     white-space: nowrap;
     flex-wrap: nowrap;
     padding: 6px 0;
+  }
+
+  .dropdown {
+    right: 0;
+    width: 220px;
   }
 }

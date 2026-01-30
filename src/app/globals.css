@@ -9,8 +9,12 @@ body {
     var(--font-sans),
     system-ui,
     -apple-system,
-    Segoe UI,
+    "Segoe UI",
     Roboto,
     Arial,
     sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }

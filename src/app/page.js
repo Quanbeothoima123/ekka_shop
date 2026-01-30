@@ -15,17 +15,44 @@ export default function HomePage() {
   return (
     <>
       <HeroSlider />
-      <TopCollection />
+
+      <section id="top-collection">
+        <TopCollection />
+      </section>
+
       <CollectionBanners />
-      <TopCategories />
-      <FeaturedDeals />
-      <TopVendors />
-      <ServiceHighlights />
+
+      <section id="top-categories">
+        <TopCategories />
+      </section>
+
+      <section id="featured-deals">
+        <FeaturedDeals />
+      </section>
+
+      <section id="top-vendors">
+        <TopVendors />
+      </section>
+
+      <section id="service-highlights">
+        <ServiceHighlights />
+      </section>
+
       <PromoBillboard />
-      <NewArrivalsSection />
-      <ClientReview />
+
+      <section id="new-arrivals">
+        <NewArrivalsSection />
+      </section>
+
+      <section id="client-review">
+        <ClientReview />
+      </section>
+
       <BrandLogos />
-      <InstagramFeed />
+
+      <section id="instagram-feed">
+        <InstagramFeed />
+      </section>
     </>
   );
 }
